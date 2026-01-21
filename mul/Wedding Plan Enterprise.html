@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: #fff; /* Text color */
+            background: url('1.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        nav button {
+            background-color: #444;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        nav button:hover {
+            background-color: #666;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
+            border-radius: 10px;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 2.5em;
+        }
+
+        p {
+            font-size: 1.2em;
+        }
+
+        .search-form {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .search-form input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .search-form button {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+		comment-form {
+            margin: 20px 0;
+        }
+
+        .comment-form textarea {
+            width: 45%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+			height: 100px;
+			box-sizing: border-box;
+        }
+
+        .comment-form button {
+            padding: 10px;
+            font-size: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .comment-form button:hover {
+            background-color: #666;
+        }
+
+        .comments-section {
+            margin: 20px 0;
+        }
+
+        .comment {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: #666;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .comment-content p {
+            margin: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to HappilyEverPlanned</h1>
+    </header>
+
+    <nav>
+        <a href="Wedding Plan Enterprise.html"><button>Home</button></a>
+        <a href="Wedding Offerings.html"><button>Wedding Offerings</button></a>
+        <a href="Our Information.html"><button>Our Information</button></a>
+        <a href="about us.html"><button>About Us</button></a>
+       
+    </nav>
+
+    <div class="search-form">
+        <form>
+            <input type="text" placeholder="Search...">
+            <button type="submit" class="search-icon">
+                Search
+            </button>
+        </form>
+    </div>
+
+    <div class="container">
+        <section id="about">
+            <h2>We Can Make Your Day</h2>
+            <p>Welcome to <i><b>HappilyEverPlanned</b></i>, your premier partner in planning the wedding of your dreams. Our team of experts is dedicated to making your special day truly unforgettable.</p>
+          
+            
+			<p>Let us handle the details so you can focus on what matters most – your love!</p>
+           
+
+            <video width="640" height="360" autoplay muted controls>
+                <source src="Cal.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+	 <!-- Comment Form -->
+    <div class="comment-form">
+        <h2>Leave a Comment</h2>
+        <form id="commentForm">
+            <textarea id="comment" rows="4" placeholder="Your comment here..." required></textarea>
+            <button type="submit">Submit Comment</button>
+        </form>
+    </div>
+
+    <!-- Existing Comments -->
+    <div class="comments-section">
+        <h2>Comments</h2>
+        <!-- Example comment -->
+        <div class="comment">
+            <div class="avatar">J</div>
+            <div class="comment-content">
+                <p><strong>John Doe:</strong> This is a fantastic service! The team was professional and attentive. Highly recommend!</p>
+            </div>
+        </div>
+        <div class="comment">
+            <div class="avatar">S</div>
+            <div class="comment-content">
+                <p><strong>Mrs. Smith:</strong> Exceeded our expectations in every way! Their attention to detail and professionalism made our wedding day truly unforgettable. We can't thank them enough.</p>
+            </div>
+        </div>
+    </div>
+	<h3 align="center"><marquee>THANK YOU for visiting our website.</marquee></h3>
+       
+</body>
+</html>

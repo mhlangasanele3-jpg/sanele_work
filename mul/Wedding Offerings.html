@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Offering</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            background: url('12.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+        }
+
+        nav button {
+            background-color: #444;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        nav button:hover {
+            background-color: #666;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            margin: 20px;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 2.5em;
+        }
+
+        h2, h4, h5 {
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 1.2em;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 10px 0;
+        }
+
+        .search-form, .comment-form {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .search-form input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .search-form button {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        .comment-form textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .comment-form button {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .comment-form button:hover {
+            background-color: #666;
+        }
+
+        .comments-section {
+            margin: 20px 0;
+        }
+
+        .comment {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: #666;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .comment-content p {
+            margin: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .slideshow-container {
+            max-width: 800px;
+            max-height: 400px;
+            position: relative;
+            margin: auto;
+            overflow: hidden;
+            background-color: #fff;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .mySlides img {
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+            margin: auto;
+            cursor: pointer;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: #f1f1f1;
+            color: black;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+        }
+
+        .modal-content, #caption {
+            -webkit-animation-name: zoom;
+            -webkit-animation-duration: 0.6s;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        @-webkit-keyframes zoom {
+            from {-webkit-transform:scale(0)}
+            to {-webkit-transform:scale(1)}
+        }
+
+        @keyframes zoom {
+            from {transform:scale(0)}
+            to {transform:scale(1)}
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover, .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.9); 
+            margin: 20px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9; /* Light gray for even rows */
+        }
+
+        tr:nth-child(odd) {
+            background-color: ddd; /* White for odd rows */
+        }
+
+        thead {
+            background-color: ddd;
+            color: ddd;
+        }
+
+        @media only screen and (max-width: 700px) {
+            table {
+                font-size: 14px; /* Adjust font size for smaller screens */
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Wedding Offering</h1>
+    </header>
+
+    <nav>
+        <a href="Wedding Plan Enterprise.html"><button>Home</button></a>
+        <a href="Wedding Offerings.html"><button>Wedding Offerings</button></a>
+        <a href="Our Information.html"><button>Our Information</button></a>
+        <a href="about us.html"><button>About Us</button></a>
+    </nav>
+
+    <div class="container">
+        <div class="section">
+            <div class="text">
+                <h4>Wedding Planning:</h4>
+                <ul>
+                    <li><h5>Consultation and planning sessions</h5></li>
+                    <li><h5>Vendor management (catering, photography, music, etc.)</h5></li>
+                    <li><h5>Budgeting and timeline management</h5></li>
+                    <li><h5>Wedding theme and decor conceptualization</h5></li>
+                </ul>
+                <p>Services:</p>
+            </div>
+            <div class="slideshow-container" id="slideshow-2">
+                <div class="mySlides">
+                    <img src="b.jpg" alt="Service Image 1">
+                </div>
+                <div class="mySlides">
+                    <img src="x.jpg" alt="Service Image 2">
+                </div>
+                <div class="mySlides">
+                    <img src="z.jpg" alt="Service Image 3">
+                </div>
+                <a class="prev" onclick="plusSlides(-1, 'slideshow-2')">&#10094;</a>
+                <a class="next" onclick="plusSlides(1, 'slideshow-2')">&#10095;</a>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="text">
+                <h4>Food and Beverage:</h4>
+                <ul>
+                    <li><h5>Catering services</h5></li>
+                    <li><h5>Customized menus</h5></li>
+                    <li><h5>Wedding cake design</h5></li>
+                    <li><h5>Bar services (signature cocktails, wine, beer)</h5></li>
+                    <li><h5>Hors d'oeuvres and appetizers & etc</h5></li>
+                </ul>
+                <p>Food and Beverage:</p>
+            </div>
+            <div class="slideshow-container" id="slideshow-3">
+                <div class="mySlides">
+                    <img src="cake.jpg" alt="Food and Beverage Image 1">
+                </div>
+                <div class="mySlides">
+                    <img src="food.jpg" alt="Food and Beverage Image 2">
+                </div>
+                <div class="mySlides">
+                    <img src="food1.jpg" alt="Food and Beverage Image 3">
+                </div>
+                <a class="prev" onclick="plusSlides(-1, 'slideshow-3')">&#10094;</a>
+                <a class="next" onclick="plusSlides(1, 'slideshow-3')">&#10095;</a>
+            </div>
+        </div>
+
+        <h1>Our Packages</h1>
+        <div>
+            <<table style="background-color: gray; color: black;">
+                <tr>
+        <th>Service</th>
+        <th>Details</th>
+    </tr>
+    <tr>
+        <td>Package Price</td>
+        <td class="price">R10,000 - R 15000</td>
+    </tr>
+    <tr>
+        <td>Venue Rental + Entertainment</td>
+        <td>6 hours</td>
+    </tr>
+    <tr>
+        <td>Catering + Beverage Package </td>
+        <td> buffet-style dinner, Open bar</td>
+    </tr>
+    
+    <tr>
+        <td>Floral Arrangements + Wedding Cake </td>
+        <td>arrangements included,3 tiers included </td>
+    </tr>
+    
+    <tr>
+        <td>Photography</td>
+        <td>Professional coverage for 6 hours</td>
+    </tr>
+   
+            </table>
+        </div>
+
+        <h3><marquee>THANK YOU for visiting our website.</marquee></h3>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+
+    <script>
+        function showSlides(slideIndex, slideshowId) {
+            let slides = document.querySelectorAll(`#${slideshowId} .mySlides`);
+            if (slideIndex > slides.length) { slideIndex = 1; }    
+            if (slideIndex < 1) { slideIndex = slides.length; }
+            
+            slides.forEach((slide, index) => {
+                slide.style.display = index + 1 === slideIndex ? 'block' : 'none';
+            });
+        }
+
+        function plusSlides(n, slideshowId) {
+            let slides = document.querySelectorAll(`#${slideshowId} .mySlides`);
+            let currentIndex = Array.from(slides).findIndex(slide => slide.style.display === 'block');
+            if (currentIndex === -1) currentIndex = 0; // Default to the first slide if no slide is visible
+            showSlides(currentIndex + n + 1, slideshowId);
+        }
+
+        // Initialize slideshows
+        document.querySelectorAll('.slideshow-container').forEach((container) => {
+            showSlides(1, container.id);
+        });
+
+        // Modal functionality
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+
+        document.querySelectorAll('.mySlides img').forEach(img => {
+            img.onclick = function(){
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+        });
+
+        var span = document.getElementsByClassName("close")[0];
+        span.onclick = function() { 
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>
