@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Delicious Cakes - CakeDelight</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    * {margin: 0;padding: 0;box-sizing: border-box;}
+    body {font-family: 'Roboto', sans-serif;background: #fff;color: #333;line-height: 1.6;}
+    .shadow {box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
+    header {display: flex;justify-content: space-between;align-items: center;padding: 20px 5%;background-color: #fff;position: sticky;top: 0;z-index: 100;}
+    header .logo {font-size: 1.5em;color: #f15a29;font-weight: bold;}
+    nav a {margin: 0 15px;text-decoration: none;color: #333;font-weight: 500;transition: color 0.3s;}
+    nav a:hover {color: #f15a29;}
+    .hero {display: flex;align-items: center;justify-content: space-between;padding: 60px 5%;background: #fff4f1;flex-wrap: wrap;}
+    .hero-text {max-width: 50%;min-width: 300px;}
+    .hero-text h1 {font-size: 2.5em;margin-bottom: 20px;}
+    .hero-text p {font-size: 1.1em;margin-bottom: 30px;}
+    .explore-btn {background: #f15a29;color: white;padding: 12px 25px;border-radius: 25px;text-decoration: none;transition: background 0.3s;}
+    .explore-btn:hover {background: #d94e22;}
+    .hero-img img {width: 100%;max-width: 500px;border-radius: 10px;}
+    .cakes-section {padding: 60px 5%;text-align: center;}
+    .cakes-section h2 {font-size: 2.2em;margin-bottom: 40px;}
+    .cakes {display: flex;justify-content: center;gap: 30px;flex-wrap: wrap;}
+    .cake-card {width: 250px;padding: 20px;background: #fff;border-radius: 10px;box-shadow: 0 4px 15px rgba(0,0,0,0.1);}
+    .cake-card img {width: 100%;border-radius: 8px;margin-bottom: 15px;}
+    .cake-card h3 {margin-bottom: 10px;color: #f15a29;}
+    .hero-img img, .cake-card img {
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% {transform: translateY(0);box-shadow: 0 5px 15px rgba(0,0,0,0.2);}
+      50% {transform: translateY(-10px);box-shadow: 0 15px 20px rgba(0,0,0,0.3);}
+    }
+    .hero-img img:hover, .cake-card img:hover {
+      transform: translateY(-15px);box-shadow: 0 20px 25px rgba(0,0,0,0.4);
+    }
+    footer {padding: 2rem;background: #f15a29;color: white;text-align: center;}
+    .footer-button {background: white;color: #f15a29;padding: 10px 20px;border-radius: 25px;text-decoration: none;font-weight: bold;}
+    .social-icons a {margin: 0 15px;}
+    .social-icons img {width: 30px;height: 30px;}
+
+    /* FLOATING CONTACT BUTTON */
+    .contact-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #f15a29;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 6px 20px rgba(241,90,41,0.4);
+      cursor: pointer;
+      z-index: 1000;
+      transition: all 0.3s;
+    }
+    .contact-float:hover {transform: scale(1.1);background: #e04a1e;}
+
+    /* POPUP MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-content {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #999;
+    }
+    .close-modal:hover {color: #f15a29;}
+    .modal h2 {font-size: 2rem;color: #f15a29;margin-bottom: 20px;text-align: center;}
+    .modal label {display: block;margin: 15px 0 8px;font-weight: 500;}
+    .modal input, .modal textarea {
+      width: 100%;padding: 12px;border: 1px solid #ddd;border-radius: 10px;
+    }
+    .modal .submit-btn {
+      background: #f15a29;color: white;padding: 14px 30px;border: none;border-radius: 50px;
+      font-size: 1.1rem;cursor: pointer;margin-top: 20px;width: 100%;
+    }
+    .modal .submit-btn:hover {background: #e04a1e;}
+
+    @media (max-width: 768px) {
+      header {flex-direction: column;gap: 15px;}
+      .hero {flex-direction: column;text-align: center;}
+      .hero-text {max-width: 100%;margin-bottom: 30px;}
+      .cake-card {width: 100%;max-width: 300px;}
+      .contact-float {width: 55px;height: 55px;font-size: 1.6rem;bottom: 20px;right: 20px;}
+      .modal-content {padding: 30px;}
+    }
+  </style>
+  </style>
+</head>
+<body>
+  <header class="shadow">
+    <div class="logo">CakeDelight</div>
+    <nav>
+    <a href="home.html">Home</a>
+      <a href="order - copy.html">Order</a>
+	  <a href="confem.html">Confirmation</a> 
+      <a href="about us.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Delicious Cakes for Every Occasion</h1>
+      <p>Indulge in our freshly baked cakes, crafted with love and the finest ingredients for all your special moments.</p>
+      <a href="#premium-cakes" class="explore-btn">Explore Our Cakes</a>
+    </div>
+    <div class="hero-img">
+      <img src="CAKE1.jpg" alt="Beautiful layered cake with cream and berries" loading="lazy"/>
+    </div>
+  </section>
+
+  <!-- PREMIUM CAKES SECTION -->
+  <section id="premium-cakes" class="cakes-section">
+    <h2>Premium Exclusive Cakes</h2>
+    <p class="section-subtitle">Luxurious, beautifully decorated cakes for special celebrations</p>
+    <div class="cakes">
+      <div class="cake-card">
+        <img src="cake2.jpg" alt="Sweetheart cake" loading="lazy"/>
+        <h3>Sweetheart</h3>
+        <p>Pink-frosted vanilla & strawberry layers</p>
+		 <p class="price">From R180</p>
+      </div>
+      <div class="cake-card">
+        <img src="cake3.jpg" alt="Blackforest cake" loading="lazy"/>
+        <h3>Blackforest</h3>
+        <p>Rich chocolate with cherries & cream</p>
+		 <p class="price">From R180</p>
+      </div>
+      <div class="cake-card">
+        <img src="cake5.jpg" alt="Chocolate Dream cake" loading="lazy"/>
+        <h3>Chocolate Dream</h3>
+        <p>Decadent chocolate with smooth ganache</p>
+		 <p class="price">From R180</p>
+      </div>
+      <div class="cake-card">
+        <img src="cake6.jpg" alt="Vanilla Bliss cake" loading="lazy"/>
+        <h3>Vanilla Bliss</h3>
+        <p>Light vanilla with creamy buttercream</p>
+		 <p class="price">From R180</p>
+      </div>
+      <div class="cake-card">
+        <img src="IMG-20250826-WA0029.jpg" alt="Red Velvet cake" loading="lazy"/>
+        <h3>Red Velvet</h3>
+        <p>Classic red velvet with cream cheese frosting</p>
+		 <p class="price">From R180</p>
+      </div>
+      <div class="cake-card">
+        <img src="ds.jpg" alt="Lemon Zest cake" loading="lazy"/>
+        <h3>Lemon Zest</h3>
+        <p>Refreshing lemon with citrus glaze</p>
+		 <p class="price">From R180</p>
+      </div>
+      <div class="cake-card">
+        <img src="love.jpg" alt="Love Box Variety" loading="lazy"/>
+        <h3>Love Box Variety</h3>
+        <p>Mixed premium flavors in a gift box</p>
+		 <p class="price">From R180</p>
+      </div>
+      <div class="cake-card">
+        <img src="cake.jpeg" alt="Cupcake Variety" loading="lazy"/>
+        <h3>Cupcake Variety</h3>
+        
+		 <p class="price">From R180</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLASSIC & SIMPLE CAKES SECTION -->
+  <section class="cakes-section" style="background:#f9f9f9;">
+    <h2>Simple Cakes</h2>
+    <p class="section-subtitle">Elegant, minimalist designs at everyday prices — perfect for casual treats or budget celebrations</p>
+    <div class="cakes">
+      <div class="cake-card">
+        <img src="https://www.brides.com/thmb/zC1B8-CSLNs5CqVkPK2a0ceLkHo=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/small-wedding-cakes-facebook-mason-neufeld-photography-12-5-5d644b38bcfd4bd2b394bca05f7a20d7.jpg" alt="Classic Vanilla cake" loading="lazy"/>
+        <h3>Classic Vanilla</h3>
+        <p>Light sponge with smooth white buttercream</p>
+        <p class="price">From R180</p>
+      </div>
+      <div class="cake-card">
+        <img src="https://i.ytimg.com/vi/bT1Qnk1B8Oo/sddefault.jpg" alt="Simple Chocolate cake" loading="lazy"/>
+        <h3>Simple Chocolate</h3>
+        <p>Rich chocolate with glossy ganache</p>
+        <p class="price">From R200</p>
+      </div>
+      <div class="cake-card">
+        <img src="https://aem.sobeys.com/adobe/dynamicmedia/deliver/dm-aid--265a0752-995e-46c5-a032-b9a48847878d/recipe-classic-red-velvet-cake.jpg.webp?preferwebp=true" alt="Plain Red Velvet cake" loading="lazy"/>
+        <h3>Plain Red Velvet</h3>
+        <p>Classic red layers with cream cheese frosting</p>
+        <p class="price">From R220</p>
+      </div>
+      <div class="cake-card">
+        <img src="https://static.wixstatic.com/media/92fbd6_fd405d6a1ae44db48bb5411532388979~mv2.jpg/v1/fill/w_980,h_653,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/92fbd6_fd405d6a1ae44db48bb5411532388979~mv2.jpg" alt="Elegant White Tiered cake" loading="lazy"/>
+        <h3>Elegant White Tiered</h3>
+        <p>Minimalist white fondant (2-3 tiers)</p>
+        <p class="price">From R350</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+  <div class="contact-details">
+      <p><strong>Phone:</strong> 0795005677</p>
+      <p><strong>Email:</strong> info@deliciousbakery.com</p>
+      <p><strong>Address:</strong> 1245 backdoor, Mpumalanga, South Africa</p>
+    </div>
+    
+    <p style="margin-top:20px;">© Property of IJS Production</p>
+    <div class="social-icons" style="margin-top:15px;">
+      <a href="https://www.facebook.com/sanele.mhlanga.372" target="blank">
+        <img src="facebook.png" alt="Facebook"/>
+      </a>
+      <a href="https://www.instagram.com/sanel_e1/?hl=en" target="blank">
+        <img src="gram.jpeg" alt="Instagram"/>
+      </a>
+    </div>
+  </footer>
+  
+  <div class="contact-float" onclick="document.getElementById('contactModal').style.display='flex'">
+    ?
+  </div>
+
+  <!-- CONTACT POPUP MODAL -->
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="document.getElementById('contactModal').style.display='none'">×</span>
+      <h2>Contact Us</h2>
+      <p style="text-align:center;margin-bottom:20px;color:#666;">Have questions? We'd love to hear from you!</p>
+      <form id="contact-form">
+        <label>Full Name</label>
+        <input type="text" id="name" required pattern="[A-Za-z\s]{2,50}"/>
+        
+        <label>Email Address</label>
+        <input type="email" id="email" required/>
+        
+        <label>Message</label>
+        <textarea id="message" rows="5" required></textarea>
+        
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+      
+      <div style="margin-top:30px;text-align:center;">
+        <p><strong>Phone:</strong> 079 500 5677</p>
+        <p><strong>Address:</strong> 1245 Backdoor, Mpumalanga, South Africa</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simple form submission (you can connect to EmailJS later)
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you! Your message has been sent. We will reply soon.');
+      document.getElementById('contactModal').style.display = 'none';
+      this.reset();
+    });
+  </script>
+</body>
+</html>
